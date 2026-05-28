@@ -7,10 +7,14 @@ import windIcon from "../../assets/icons/wind.svg";
 export default function Weatherdata() {
     return (
         <div>
+            {/* weather title ----------------------------------------------------------------------*/}
             <p className="text-sm lg:text-lg font-bold uppercase mb-8">
                 thunderstorm with light drizzle
             </p>
+
+            {/* weather data list ---------------------------------------*/}
             <ul className="space-y-6 lg:space-y-6">
+                {/*max_temprature----------------------------*/}
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Temp max</span>
                     <div className="inline-flex space-x-4">
@@ -18,6 +22,8 @@ export default function Weatherdata() {
                         <img src={maxTempIcon} alt="temp-max" />
                     </div>
                 </li>
+
+                {/*min_temprature----------------------------*/}
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Temp min</span>
                     <div className="inline-flex space-x-4">
@@ -25,6 +31,8 @@ export default function Weatherdata() {
                         <img src={minTempIcon} alt="temp-min" />
                     </div>
                 </li>
+
+                {/*humidity------------------------------------*/}
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Humadity</span>
                     <div className="inline-flex space-x-4">
@@ -32,6 +40,8 @@ export default function Weatherdata() {
                         <img src={humidityIcon} alt="humidity" />
                     </div>
                 </li>
+
+                {/*cloud-----------------------------------------*/}
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Cloudy</span>
                     <div className="inline-flex space-x-4">
@@ -39,6 +49,8 @@ export default function Weatherdata() {
                         <img src={cloudIcon} alt="cloudy" />
                     </div>
                 </li>
+
+                {/*wind---------------------------------------------*/}
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Wind</span>
                     <div className="inline-flex space-x-4">
