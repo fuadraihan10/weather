@@ -1,122 +1,153 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <div class="bg-body font-[Roboto] text-light bg-[url('../assets/body-bg.png')] bg-no-repeat bg-cover h-screen grid place-items-center">
+            <header class="fixed w-full top-0 z-50 bg-linear-to-b from-black/60 to-black/0 pb-10">
+                <nav class="container flex items-center justify-between py-6">
+                    <a href="./index.html">
+                        <img
+                            class="h-9"
+                            src="./assets/logo.svg"
+                            alt="Weather App"
+                        />
+                    </a>
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+                    <div class="flex items-center gap-4 relative">
+                        <form action="#">
+                            <div class="flex items-center space-x-2 py-2 px-3 group focus-within:bg-black/30 transition-all border-b border-white/50 focus-within:border-b-0 focus-within:rounded-md">
+                                <input
+                                    class="bg-transparent  placeholder:text-white text-white w-full text-xs md:text-base outline-none border-none"
+                                    type="search"
+                                    placeholder="Search Location"
+                                    required
+                                />
+                                <button type="submit">
+                                    <img src="./assets/search.svg" />
+                                </button>
+                            </div>
+                        </form>
+                        <div class="p-2 hover:bg-black/30 cursor-pointer flex gap-2 items-center rounded-md transition-all">
+                            <img src="./assets/heart.svg" alt="" />
+                            <span>Favourite Locations</span>
+                        </div>
 
-      <div className="ticks"></div>
+                        <div class="max-w-xs py-4 bg-white rounded-md border-gray-500 absolute right-0 top-16 text-black shadow-lg ">
+                            <h3 class="text-lg font-bold px-4">
+                                Favourite Locations
+                            </h3>
+                            <ul class="space-y-2 mt-4 *:py-2 *:px-4 *:cursor-pointer">
+                                <li class="hover:bg-gray-200">Dhaka</li>
+                                <li class="hover:bg-gray-200">Rangpur</li>
+                                <li class="hover:bg-gray-200">Europe</li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+            <main>
+                <section class="">
+                    <div class="container">
+                        <div class="grid bg-black/20 rounded-xl backdrop-blur-md border-2 lg:border-[3px] border-white/14 px-4 lg:px-14 py-6 lg:py-10 min-h-130 max-w-264.5 mx-auto">
+                            <div class="grid md:grid-cols-2 gap-10 md:gap-6">
+                                <div class="md:col-span-2">
+                                    <div class="flex items-center justify-end space-x-6">
+                                        <button class="text-sm md:text-base inline-flex items-center space-x-2 px-3 py-1.5 rounded-md bg-[#C5C5C54D]">
+                                            <span>Add to Favourite</span>
+                                            <img
+                                                src="./assets/heart.svg"
+                                                alt=""
+                                            />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="max-md:flex items-center justify-between md:-mt-10">
+                                        <img
+                                            src="./assets/cloud.svg"
+                                            alt="cloud"
+                                        />
+                                        <div class="max-md:flex items-center max-md:space-x-4">
+                                            <h1 class="text-[60px] lg:text-[80px] xl:text-[100px] leading-none md:mb-4">
+                                                16°
+                                            </h1>
+                                            <div class="flex items-center space-x-4 md:mb-4">
+                                                <img src="./assets/pin.svg" />
+                                                <h2 class="text-2xl lg:text-[50px]">
+                                                    Dhaka
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm lg:text-lg">
+                                        06:09 - Sunday, 9 Dec ‘23
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="text-sm lg:text-lg font-bold uppercase mb-8">
+                                        thunderstorm with light drizzle
+                                    </p>
+                                    <ul class="space-y-6 lg:space-y-6">
+                                        <li class="text-sm lg:text-lg flex items-center justify-between space-x-4">
+                                            <span>Temp max</span>
+                                            <div class="inline-flex space-x-4">
+                                                <p>19°</p>
+                                                <img
+                                                    src="./assets/icons/temp-max.svg"
+                                                    alt="temp-max"
+                                                />
+                                            </div>
+                                        </li>
+                                        <li class="text-sm lg:text-lg flex items-center justify-between space-x-4">
+                                            <span>Temp min</span>
+                                            <div class="inline-flex space-x-4">
+                                                <p>19°</p>
+                                                <img
+                                                    src="./assets/icons/temp-min.svg"
+                                                    alt="temp-min"
+                                                />
+                                            </div>
+                                        </li>
+                                        <li class="text-sm lg:text-lg flex items-center justify-between space-x-4">
+                                            <span>Humadity</span>
+                                            <div class="inline-flex space-x-4">
+                                                <p>58%</p>
+                                                <img
+                                                    src="./assets/icons/humidity.svg"
+                                                    alt="humidity"
+                                                />
+                                            </div>
+                                        </li>
+                                        <li class="text-sm lg:text-lg flex items-center justify-between space-x-4">
+                                            <span>Cloudy</span>
+                                            <div class="inline-flex space-x-4">
+                                                <p>86%</p>
+                                                <img
+                                                    src="./assets/icons/cloud.svg"
+                                                    alt="cloudy"
+                                                />
+                                            </div>
+                                        </li>
+                                        <li class="text-sm lg:text-lg flex items-center justify-between space-x-4">
+                                            <span>Wind</span>
+                                            <div class="inline-flex space-x-4">
+                                                <p>5km/h</p>
+                                                <img
+                                                    src="./assets/icons/wind.svg"
+                                                    alt="wind"
+                                                />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    );
 }
 
-export default App
+export default App;
