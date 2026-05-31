@@ -2,8 +2,11 @@ import FavouriteLocations from "./FavouriteLocations";
 import FavouriteLocationsModal from "./favouriteLocationsModal";
 import Logo from "./logo";
 import Search from "./search";
+import {useState} from "react"
 
 export default function Header() {
+    const [showfavModal,setshowModal] = useState(false)
+
     return (
         <header className="fixed w-full top-0 z-50 bg-linear-to-b from-black/60 to-black/0 pb-10">
             <nav className="container flex items-center justify-between py-6">
@@ -13,11 +16,12 @@ export default function Header() {
                     {/*search component------------*/}
                     <Search />
                     {/*favourite locations component--------------*/}
-                    <FavouriteLocations />
+                    <FavouriteLocations onShow={()=>{setshowModal(!showfavModal)}}/>
                     {/*favourite locations modal component----------------*/}
-                    <FavouriteLocationsModal />
+                    {showfavModal && <FavouriteLocationsModal />}
                 </div>
             </nav>
         </header>
+
     );
 }
