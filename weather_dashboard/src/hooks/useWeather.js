@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { LocationContext } from "../context/index.js";
 
 //main function to fetch weather data---------------------------
 export default function useWeather() {
@@ -17,7 +18,10 @@ export default function useWeather() {
         latitude: "",
     });
     const [isLoading, setIsLoading] = useState({ state: false, message: "" });
+
     const [error, setError] = useState(null);
+
+    const { selectedLocation } = useContext(LocationContext);
 
     //fetching weather data function according to latitude and longitude------------------------------------------------------
     const fetchWeatherData = useCallback(async (latitude, longitude) => {
@@ -35,7 +39,6 @@ export default function useWeather() {
                 throw new Error(
                     `Fetching weather data failed: ${response.status}`,
                 );
-                
             }
 
             const data = await response.json();
@@ -48,7 +51,7 @@ export default function useWeather() {
                 maxTemperature: data?.main?.temp_max,
                 minTemperature: data?.main?.temp_min,
                 humidity: data?.main?.humidity,
-                cloudPercentage: data?.clouds?.all ,
+                cloudPercentage: data?.clouds?.all,
                 wind: data?.wind?.speed,
                 time: data?.dt,
                 longitude,
@@ -66,24 +69,36 @@ export default function useWeather() {
 
     useEffect(() => {
         setIsLoading({ state: true, message: "Finding location..." });
-
-        //collectiong users latitude and longitude-------------
-        navigator.geolocation.getCurrentPosition(
-            //if location found------------
-            (position) => {
-                //calling the main function (async)-----------------
-                fetchWeatherData(
-                    position.coords.latitude,
-                    position.coords.longitude,
-                );
-            },
-            //if location is not found ------------------------
-            (err) => {
-                setError(new Error("Location access denied: " + err.message));
-                setIsLoading({ state: false, message: "" });
-            },
-        );
-    }, [fetchWeatherData]);
+        if (selectedLocation.latitude && selectedLocation.longitude) {
+            fetchWeatherData(
+                selectedLocation.latitude,
+                selectedLocation.longitude,
+            );
+        } else {
+            //collectiong users latitude and longitude-------------
+            navigator.geolocation.getCurrentPosition(
+                //if location found------------
+                (position) => {
+                    //calling the main function (async)-----------------
+                    fetchWeatherData(
+                        position.coords.latitude,
+                        position.coords.longitude,
+                    );
+                },
+                //if location is not found ------------------------
+                (err) => {
+                    setError(
+                        new Error("Location access denied: " + err.message),
+                    );
+                    setIsLoading({ state: false, message: "" });
+                },
+            );
+        }
+    }, [
+        fetchWeatherData,
+        selectedLocation.latitude,
+        selectedLocation.longitude,
+    ]);
 
     //return the states
     return { weatherData, error, isLoading };

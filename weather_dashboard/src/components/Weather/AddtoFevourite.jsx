@@ -18,13 +18,11 @@ export default function AddtoFevourite() {
     ;
 
     function handleFavourite() {
+        
         const found = favourites.find((fav) => fav.location === location);
-        console.log(found, favourites);
         if (!found) {
-            console.log("Adding to favourite", latitude, longitude, location);
             addToFavourite(latitude, longitude, location);
         } else {
-            console.log("Removing from favourite", location);
             removeFromFavourites(location);
         }
         setIsFavourite(!isFavourite);
