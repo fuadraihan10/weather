@@ -1,15 +1,27 @@
+import { useContext } from "react";
 import cloudIcon from "../../assets/icons/cloud.svg";
 import humidityIcon from "../../assets/icons/humidity.svg";
 import maxTempIcon from "../../assets/icons/temp-max.svg";
 import minTempIcon from "../../assets/icons/temp-min.svg";
 import windIcon from "../../assets/icons/wind.svg";
+import { WeatherContext } from "../../context/index.js";
 
 export default function Weatherdata() {
+    const { weatherData } = useContext(WeatherContext);
+    const {
+        maxTemperature,
+        minTemperature,
+        humidity,
+        cloudPercentage,
+        wind,
+        climate,
+    } = weatherData;
+
     return (
         <div>
             {/* weather title ----------------------------------------------------------------------*/}
             <p className="text-sm lg:text-lg font-bold uppercase mb-8">
-                thunderstorm with light drizzle
+                The climate is <u>{climate}</u>
             </p>
 
             {/* weather data list ---------------------------------------*/}
@@ -18,7 +30,7 @@ export default function Weatherdata() {
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Temp max</span>
                     <div className="inline-flex space-x-4">
-                        <p>19°</p>
+                        <p>{Math.round(maxTemperature)}</p>
                         <img src={maxTempIcon} alt="temp-max" />
                     </div>
                 </li>
@@ -27,7 +39,7 @@ export default function Weatherdata() {
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Temp min</span>
                     <div className="inline-flex space-x-4">
-                        <p>19°</p>
+                        <p>{Math.round(minTemperature)}</p>
                         <img src={minTempIcon} alt="temp-min" />
                     </div>
                 </li>
@@ -36,7 +48,7 @@ export default function Weatherdata() {
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Humadity</span>
                     <div className="inline-flex space-x-4">
-                        <p>58%</p>
+                        <p>{humidity}%</p>
                         <img src={humidityIcon} alt="humidity" />
                     </div>
                 </li>
@@ -45,7 +57,7 @@ export default function Weatherdata() {
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Cloudy</span>
                     <div className="inline-flex space-x-4">
-                        <p>86%</p>
+                        <p>{cloudPercentage}%</p>
                         <img src={cloudIcon} alt="cloudy" />
                     </div>
                 </li>
@@ -54,7 +66,7 @@ export default function Weatherdata() {
                 <li className="text-sm lg:text-lg flex items-center justify-between space-x-4">
                     <span>Wind</span>
                     <div className="inline-flex space-x-4">
-                        <p>5km/h</p>
+                        <p>{wind}km/h</p>
                         <img src={windIcon} alt="wind" />
                     </div>
                 </li>

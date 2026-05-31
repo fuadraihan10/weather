@@ -1,33 +1,33 @@
 import { useContext } from "react";
-import pin from "../../assets/pin.svg";
-import { weatherContext } from "../../context/index.js";
-import getFormatedDate from "../../utils/date-utils.js";
 import CloudIcon from "../../assets/cloud.svg";
 import HazeIcon from "../../assets/haze.svg";
-import RainIcon from "../../assets/rainy.svg";
 import SnowIcon from "../../assets/icons/snow.svg";
-import ThunderIcon from "../../assets/thunder.svg";
 import SunnyIcon from "../../assets/icons/sunny.svg";
+import pin from "../../assets/pin.svg";
+import RainIcon from "../../assets/rainy.svg";
+import ThunderIcon from "../../assets/thunder.svg";
+import { WeatherContext } from "../../context/index.js";
+import getFormatedDate from "../../utils/date-utils.js";
 
 export default function Weatherheadline() {
-    const { weatherData } = useContext(weatherContext);
+    const { weatherData } = useContext(WeatherContext);
     const { climate, location, temperature, time } = weatherData;
 
     function getWeatherIcon(climate) {
         switch (climate) {
-            case "Clouds":  
+            case "Clouds":
                 return CloudIcon;
-            case "Fog":  
+            case "Fog":
                 return HazeIcon;
-            case "Rain":  
+            case "Rain":
                 return RainIcon;
-            case "Snow":  
+            case "Snow":
                 return SnowIcon;
-            case "Thunder":  
+            case "Thunder":
                 return ThunderIcon;
-            case "Clear":  
+            case "Clear":
                 return SunnyIcon;
-            case "Haze":  
+            case "Haze":
                 return HazeIcon;
         }
     }
@@ -52,9 +52,7 @@ export default function Weatherheadline() {
             </div>
             {/*time-date*/}
             <p className="text-sm lg:text-lg">
-                {getFormatedDate(time, "time", false)}
-                    -
-                {getFormatedDate(time, "date", false)}
+                {`${getFormatedDate(time, "time", false)}   -   ${getFormatedDate(time, "date", false)} `}
             </p>
         </div>
     );

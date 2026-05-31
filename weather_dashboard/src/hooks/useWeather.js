@@ -35,6 +35,7 @@ export default function useWeather() {
                 throw new Error(
                     `Fetching weather data failed: ${response.status}`,
                 );
+                
             }
 
             const data = await response.json();
@@ -47,7 +48,7 @@ export default function useWeather() {
                 maxTemperature: data?.main?.temp_max,
                 minTemperature: data?.main?.temp_min,
                 humidity: data?.main?.humidity,
-                cloudPercentage: data?.clouds?.all,
+                cloudPercentage: data?.clouds?.all ,
                 wind: data?.wind?.speed,
                 time: data?.dt,
                 longitude,
